@@ -27,8 +27,9 @@ export default function Login() {
         localStorage.setItem("user", JSON.stringify(data.user || {}));
         setMsg("✅ Đăng nhập thành công");
 
-        const role = data.user?.role;
+        const role = String(data.user?.role || "").toLowerCase();
         if (role === "admin") navigate("/admin", { replace: true });
+        else if (role === "manager") navigate("/manager", { replace: true });
         else navigate("/user", { replace: true });
       } else {
         setMsg(data.msg || "Đăng nhập thất bại");

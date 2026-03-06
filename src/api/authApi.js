@@ -1,29 +1,23 @@
 ﻿import axiosClient from "./axiosClient";
 
 const authApi = {
-  // Đăng nhập
   login: async (username, password) => {
-    const url = "/auth/login";
-    // Trả về thẳng data vì axiosClient đã "gọt vỏ" rồi
-    return await axiosClient.post(url, { username, password });
+    return await axiosClient.post("/auth/login", { username, password });
   },
 
-  // Lấy thông tin cá nhân (cần token)
   getProfile: async () => {
-    const url = "/auth/profile";
-    return await axiosClient.get(url);
+    return await axiosClient.get("/auth/me");
   },
 
-  // Đăng xuất (nếu backend có xử lý revoke token)
   logout: async () => {
     try {
-      await axiosClient.post("/auth/logout"); // nếu backend có
-    } catch {
-      // ignore
+      await axiosClient.post("/auth/logout");
+    } catch (error) {
+      console.warn("Backend logout chưa có hoặc bị lỗi:", error);
+    } finally {
+      localStorage.removeItem("access_token");
+      localStorage.removeItem("user");
     }
-
-    localStorage.removeItem("access_token");
-    localStorage.removeItem("user");
   },
 };
 
