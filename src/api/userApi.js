@@ -8,6 +8,11 @@ const pickList = (payload) => {
   return [];
 };
 
+export const getJobTitles = async () => {
+  const res = await axiosClient.get("/admin/job-titles");
+  return pickList(res);
+};
+
 // lấy danh sách user
 export const getUsers = async () => {
   const res = await axiosClient.get("/admin/users");

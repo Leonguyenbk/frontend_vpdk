@@ -170,25 +170,25 @@ export default function AdminDashboard() {
     <>
       {/* Wrapper */}
       <div
-        className={`p-8 bg-zinc-950 min-h-screen text-zinc-100 font-sans transition-all duration-300
+        className={`p-8 bg-gray-50 min-h-screen text-gray-900 font-sans transition-all duration-300
         ${drawerOpen ? "pr-[420px]" : "pr-8"}`}
       >
         {/* Header */}
-        <div className="flex justify-between items-end mb-6 border-b border-zinc-800 pb-6">
+        <div className="flex justify-between items-end mb-6 border-b border-gray-200 pb-6">
           <div>
             <h1 className="text-4xl font-black text-red-600 tracking-tighter italic uppercase">
               Quản trị nhân sự
             </h1>
-            <p className="text-zinc-500 text-sm mt-1 uppercase tracking-widest">
+            <p className="text-gray-500 text-sm mt-1 uppercase tracking-widest">
               Hệ thống:{" "}
-              <span className="text-zinc-200 font-mono">{loggedInUser.username}</span>
+              <span className="text-gray-900 font-mono">{loggedInUser.username}</span>
             </p>
           </div>
 
           <div className="flex gap-3">
             <button
               onClick={fetchData}
-              className="bg-zinc-800 hover:bg-zinc-700 text-white px-4 py-2.5 rounded-lg font-bold transition-all border border-zinc-700"
+              className="bg-gray-100 hover:bg-gray-200 text-gray-900 px-4 py-2.5 rounded-lg font-bold transition-all border border-gray-300"
             >
               Làm mới
             </button>

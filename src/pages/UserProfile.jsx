@@ -60,22 +60,22 @@ export default function UserProfile() {
 
   return (
     <div className="max-w-6xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <div className="border-b border-white/10 pb-6">
-        <h1 className="text-4xl font-black text-white uppercase italic tracking-tighter">Cài đặt hồ sơ</h1>
-        <p className="text-zinc-500 text-sm font-bold uppercase tracking-widest mt-2">Quản lý thông tin cá nhân và bảo mật tài khoản</p>
+      <div className="border-b border-gray-200 pb-6">
+        <h1 className="text-4xl font-black text-gray-900 uppercase italic tracking-tighter">Cài đặt hồ sơ</h1>
+        <p className="text-gray-500 text-sm font-bold uppercase tracking-widest mt-2">Quản lý thông tin cá nhân và bảo mật tài khoản</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Cột 1: Thông tin tổng quan */}
         <div className="space-y-6">
-           <div className="bg-zinc-900 border border-white/5 rounded-[2rem] p-8 text-center shadow-2xl">
-              <div className="h-24 w-24 rounded-3xl bg-red-600 mx-auto flex items-center justify-center text-4xl font-black shadow-xl shadow-red-900/20 mb-4 text-white">
+           <div className="bg-white border border-gray-200 rounded-[2rem] p-8 text-center shadow-2xl">
+              <div className="h-24 w-24 rounded-3xl bg-blue-600 mx-auto flex items-center justify-center text-4xl font-black shadow-xl shadow-blue-900/20 mb-4 text-gray-900">
                 {user?.full_name?.[0]}
               </div>
-              <h2 className="text-xl font-black text-white uppercase tracking-tight">{user?.full_name}</h2>
-              <p className="text-red-500 text-xs font-bold uppercase mt-1 tracking-widest">{user?.job_title}</p>
+              <h2 className="text-xl font-black text-gray-900 uppercase tracking-tight">{user?.full_name}</h2>
+              <p className="text-blue-500 text-xs font-bold uppercase mt-1 tracking-widest">{user?.job_title}</p>
               
-              <div className="mt-8 pt-8 border-t border-white/5 space-y-4 text-left">
+              <div className="mt-8 pt-8 border-t border-gray-200 space-y-4 text-left">
                  <InfoItem label="Username" value={`@${user?.username}`} />
                  <InfoItem label="Phòng ban" value={user?.org_unit?.name} />
               </div>
@@ -83,7 +83,7 @@ export default function UserProfile() {
 
            <button 
             onClick={async () => { await authApi.logout(); window.location.href = "/login"; }}
-            className="w-full py-4 rounded-2xl border border-white/5 text-zinc-500 hover:text-red-500 hover:bg-red-500/5 font-black uppercase text-xs tracking-[0.3em] transition-all"
+            className="w-full py-4 rounded-2xl border border-gray-200 text-gray-500 hover:text-blue-500 hover:bg-blue-500/5 font-black uppercase text-xs tracking-[0.3em] transition-all"
            >
             Đăng xuất khỏi hệ thống
            </button>
@@ -93,8 +93,8 @@ export default function UserProfile() {
         <div className="lg:col-span-2 space-y-8">
            
            {/* FORM 1: CẬP NHẬT THÔNG TIN CÁ NHÂN */}
-           <form onSubmit={handleUpdateInfo} className="bg-zinc-900 border border-white/5 rounded-[2rem] p-10 shadow-2xl space-y-6">
-              <h3 className="text-lg font-black text-white uppercase italic border-l-4 border-red-600 pl-4 mb-8">Thông tin liên lạc</h3>
+           <form onSubmit={handleUpdateInfo} className="bg-white border border-gray-200 rounded-[2rem] p-10 shadow-2xl space-y-6">
+              <h3 className="text-lg font-black text-gray-900 uppercase italic border-l-4 border-blue-600 pl-4 mb-8">Thông tin liên lạc</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                  <InputGroup 
                     label="Địa chỉ Email" 
@@ -121,8 +121,8 @@ export default function UserProfile() {
            </form>
 
            {/* FORM 2: ĐỔI MẬT KHẨU */}
-           <form onSubmit={handleUpdatePassword} className="bg-zinc-900 border border-white/5 rounded-[2rem] p-10 shadow-2xl space-y-6">
-              <h3 className="text-lg font-black text-white uppercase italic border-l-4 border-red-600 pl-4 mb-8">Đổi mật khẩu bảo mật</h3>
+           <form onSubmit={handleUpdatePassword} className="bg-white border border-gray-200 rounded-[2rem] p-10 shadow-2xl space-y-6">
+              <h3 className="text-lg font-black text-gray-900 uppercase italic border-l-4 border-blue-600 pl-4 mb-8">Đổi mật khẩu bảo mật</h3>
               
               <div className="space-y-4">
                 <InputGroup label="Mật khẩu hiện tại" type="password" value={passData.old} onChange={v => setPassData({...passData, old: v})} />
@@ -133,10 +133,10 @@ export default function UserProfile() {
               </div>
 
               <div className="pt-6 flex flex-col sm:flex-row justify-between items-center gap-4">
-                <p className="text-[10px] text-zinc-500 uppercase font-bold italic max-w-xs">* Lưu ý: Bạn nên sử dụng mật khẩu mạnh để bảo vệ dữ liệu công việc.</p>
+                <p className="text-[10px] text-gray-500 uppercase font-bold italic max-w-xs">* Lưu ý: Bạn nên sử dụng mật khẩu mạnh để bảo vệ dữ liệu công việc.</p>
                 <button 
                   disabled={loading}
-                  className="bg-red-600 hover:bg-red-700 text-white px-10 py-4 rounded-2xl font-black shadow-xl shadow-red-900/20 uppercase tracking-widest text-sm transition-all active:scale-95 disabled:opacity-50"
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-2xl font-black shadow-xl shadow-blue-900/20 uppercase tracking-widest text-sm transition-all active:scale-95 disabled:opacity-50"
                 >
                   {loading ? "Đang xử lý..." : "Cập nhật mật khẩu"}
                 </button>
@@ -152,8 +152,8 @@ export default function UserProfile() {
 function InfoItem({ label, value }) {
   return (
     <div>
-      <div className="text-[9px] text-zinc-600 font-black uppercase tracking-widest mb-1">{label}</div>
-      <div className="text-sm text-zinc-200 font-bold">{value || "---"}</div>
+      <div className="text-[9px] text-gray-400 font-black uppercase tracking-widest mb-1">{label}</div>
+      <div className="text-sm text-gray-700 font-bold">{value || "---"}</div>
     </div>
   );
 }
@@ -161,13 +161,13 @@ function InfoItem({ label, value }) {
 function InputGroup({ label, type, value, onChange }) {
   return (
     <div>
-      <label className="text-[10px] text-zinc-500 font-black uppercase tracking-widest block mb-2">{label}</label>
+      <label className="text-[10px] text-gray-500 font-black uppercase tracking-widest block mb-2">{label}</label>
       <input 
         required
         type={type}
         value={value}
         onChange={e => onChange(e.target.value)}
-        className="w-full bg-black/40 border border-white/10 p-4 rounded-2xl text-white outline-none focus:border-red-600 transition-all font-bold"
+        className="w-full bg-gray-50 border border-gray-200 p-4 rounded-2xl text-gray-900 outline-none focus:border-blue-600 transition-all font-bold"
       />
     </div>
   );

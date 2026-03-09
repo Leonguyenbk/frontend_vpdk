@@ -9,9 +9,9 @@ export default function UserTable({
   onDelete,
 }) {
   return (
-    <div className="bg-zinc-900 rounded-xl border border-zinc-800 overflow-hidden shadow-2xl">
+    <div className="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-md">
       <table className="w-full text-left">
-        <thead className="bg-zinc-800/50 text-zinc-500 text-[10px] uppercase font-bold tracking-widest">
+        <thead className="bg-gray-100 text-gray-500 text-[10px] uppercase font-bold tracking-widest">
           <tr>
             <th className="p-4">ID</th>
             <th className="p-4">Nhân viên / Liên hệ</th>
@@ -21,16 +21,16 @@ export default function UserTable({
           </tr>
         </thead>
 
-        <tbody className="divide-y divide-zinc-800">
+        <tbody className="divide-y divide-gray-200">
           {loading ? (
             <tr>
-              <td colSpan="5" className="p-10 text-center text-zinc-500">
+              <td colSpan="5" className="p-10 text-center text-gray-500">
                 Đang tải dữ liệu...
               </td>
             </tr>
           ) : users.length === 0 ? (
             <tr>
-              <td colSpan="5" className="p-10 text-center text-zinc-500">
+              <td colSpan="5" className="p-10 text-center text-gray-500">
                 Không có kết quả.
               </td>
             </tr>
@@ -38,19 +38,21 @@ export default function UserTable({
             users.map((u) => (
               <tr
                 key={u.id}
-                className="hover:bg-zinc-800/30 transition-colors cursor-pointer"
+                className="hover:bg-gray-50 transition-colors cursor-pointer"
                 onClick={() => onRowClick?.(u)}
               >
-                <td className="p-4 font-mono text-zinc-600 text-sm">#{u.id}</td>
+                <td className="p-4 font-mono text-gray-500 text-sm">#{u.id}</td>
 
                 <td className="p-4">
-                  <div className="font-bold text-zinc-100">{u.full_name || u.username}</div>
-                  <div className="text-xs text-zinc-500">{u.email}</div>
+                  <div className="font-bold text-gray-900">{u.full_name || u.username}</div>
+                  <div className="text-xs text-gray-500">{u.email}</div>
                 </td>
 
                 <td className="p-4">
-                  <div className="text-sm text-zinc-300 font-medium">{u.job_title || "N/A"}</div>
-                  <div className="text-[11px] text-red-500/70 font-bold uppercase">
+                  <div className="text-sm text-gray-700 font-medium">
+                    {u.job_title_name || u.job_title || ""}
+                  </div>
+                  <div className="text-[11px] text-blue-500 font-bold uppercase">
                     {u.org_unit?.name || "Lao động tự do"}
                   </div>
                 </td>
@@ -59,8 +61,8 @@ export default function UserTable({
                   <span
                     className={`px-2 py-0.5 rounded text-[10px] font-bold border ${
                       u.role === "admin"
-                        ? "bg-red-950/30 text-red-500 border-red-900/50"
-                        : "bg-zinc-800 text-zinc-400 border-zinc-700"
+                        ? "bg-blue-100 text-blue-600 border-blue-200"
+                        : "bg-gray-200 text-gray-600 border-gray-300"
                     }`}
                   >
                     {String(u.role || "").toUpperCase()}

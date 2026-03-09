@@ -66,20 +66,20 @@ export default function ManagerLayout() {
 
   if (loading) {
     return (
-      <div className="h-screen bg-zinc-950 flex items-center justify-center text-zinc-500 animate-pulse font-black uppercase tracking-[0.3em]">
+      <div className="h-screen bg-gray-50 flex items-center justify-center text-gray-500 animate-pulse font-black uppercase tracking-[0.3em]">
         Đang đồng bộ...
       </div>
     );
   }
 
   return (
-    <div className="flex h-screen bg-zinc-950 text-zinc-100 overflow-hidden font-sans">
-      <aside className="w-64 shrink-0 flex flex-col border-r border-white/5 bg-zinc-900/60 shadow-2xl">
+    <div className="flex h-screen bg-gray-50 text-gray-900 overflow-hidden font-sans">
+      <aside className="w-64 shrink-0 flex flex-col border-r border-gray-200 bg-white shadow-2xl">
         <div className="px-6 py-8">
-          <div className="text-[10px] text-red-500 font-black uppercase tracking-[0.4em] mb-1">
+          <div className="text-[10px] text-blue-500 font-black uppercase tracking-[0.4em] mb-1">
             Quản lý
           </div>
-          <div className="text-2xl font-black text-white italic uppercase tracking-tighter">
+          <div className="text-2xl font-black text-gray-900 italic uppercase tracking-tighter">
             BẢNG ĐIỀU KHIỂN
           </div>
         </div>
@@ -96,8 +96,8 @@ export default function ManagerLayout() {
                 className={({ isActive }) =>
                   `flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-bold transition-all border border-transparent ${
                     isActive
-                      ? "bg-red-600/10 text-red-500 border-red-500/20 shadow-[0_0_20px_rgba(220,38,38,0.1)]"
-                      : "text-zinc-400 hover:text-zinc-100 hover:bg-white/5"
+                      ? "bg-blue-50 text-blue-600 border-blue-200 shadow-[0_0_20px_rgba(37,99,235,0.1)]"
+                      : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
                   }`
                 }
               >
@@ -108,51 +108,51 @@ export default function ManagerLayout() {
           })}
         </nav>
 
-        <div className="p-3 border-t border-white/5 space-y-3">
+        <div className="p-3 border-t border-gray-200 space-y-3">
           <button
             onClick={handleLogout}
             disabled={loggingOut}
             type="button"
-            className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-bold transition-all border border-transparent text-zinc-400 hover:text-red-500 hover:bg-red-600/10 hover:border-red-500/20 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-bold transition-all border border-transparent text-gray-600 hover:text-blue-600 hover:bg-blue-50 hover:border-blue-200 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <LogOut size={20} strokeWidth={2.2} />
             {loggingOut ? "Đang đăng xuất..." : "Đăng xuất"}
           </button>
 
-          <div className="pt-2 text-[10px] text-zinc-700 text-center uppercase font-black tracking-widest">
+          <div className="pt-2 text-[10px] text-gray-500 text-center uppercase font-black tracking-widest">
             Build v1.0.2
           </div>
         </div>
       </aside>
 
       <div className="flex-1 flex flex-col overflow-hidden">
-        <header className="shrink-0 h-20 border-b border-white/5 bg-zinc-900/20 flex items-center justify-between px-8 backdrop-blur-md">
-          <div className="text-sm text-zinc-400 font-bold uppercase tracking-widest italic flex items-center gap-2">
-            <Building2 size={16} className="text-red-500" />
-            <span className="h-2 w-2 rounded-full bg-red-600 animate-pulse"></span>
+        <header className="shrink-0 h-20 border-b border-gray-200 bg-white flex items-center justify-between px-8 backdrop-blur-md">
+          <div className="text-sm text-gray-600 font-bold uppercase tracking-widest italic flex items-center gap-2">
+            <Building2 size={16} className="text-blue-500" />
+            <span className="h-2 w-2 rounded-full bg-blue-600 animate-pulse"></span>
             {user?.org_unit?.name || "Không rõ đơn vị"}
           </div>
 
           <Link
             to="/manager/profile"
-            className="flex items-center gap-4 p-1.5 pr-4 rounded-2xl transition-all border border-transparent hover:border-white/10 hover:bg-white/5 group"
+            className="flex items-center gap-4 p-1.5 pr-4 rounded-2xl transition-all border border-transparent hover:border-gray-300 hover:bg-gray-100 group"
           >
             <div className="text-right hidden sm:block">
-              <div className="text-sm font-black text-white group-hover:text-red-500 transition-colors uppercase tracking-tight">
+              <div className="text-sm font-black text-gray-900 group-hover:text-blue-500 transition-colors uppercase tracking-tight">
                 {user?.full_name || "Quản lý"}
               </div>
-              <div className="text-[10px] text-zinc-500 font-bold uppercase tracking-tighter">
+              <div className="text-[10px] text-gray-500 font-bold uppercase tracking-tighter">
                 {user?.job_title || "Quản lý"}
               </div>
             </div>
 
-            <div className="h-10 w-10 rounded-xl bg-red-600 flex items-center justify-center text-sm font-black text-white shadow-lg shadow-red-900/40 group-active:scale-90 transition-all">
+            <div className="h-10 w-10 rounded-xl bg-blue-600 flex items-center justify-center text-sm font-black text-white shadow-lg shadow-blue-900/40 group-active:scale-90 transition-all">
               {(user?.full_name || "M").charAt(0).toUpperCase()}
             </div>
           </Link>
         </header>
 
-        <main className="flex-1 overflow-y-auto p-8 bg-zinc-950/50">
+        <main className="flex-1 overflow-y-auto p-8 bg-gray-50">
           <Outlet context={{ user, fetchProfile }} />
         </main>
       </div>
